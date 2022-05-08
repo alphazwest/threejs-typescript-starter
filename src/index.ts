@@ -1,10 +1,8 @@
 import BasicScene from "./BasicScene";
 
-
 // sets up the scene
 let scene = new BasicScene();
 scene.initialize();
-
 
 // loops updates
 function loop(){
@@ -16,4 +14,3 @@ function loop(){
 
 // runs a continuous loop
 loop()
-
