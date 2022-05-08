@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {GUI} from 'dat.gui';
+import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
 /**
  * A class to set up some basic scene elements to minimize code in the
@@ -15,6 +16,9 @@ export default class BasicScene extends THREE.Scene{
 
     // setup renderer
     renderer: THREE.Renderer = null;
+
+    // setup Orbitals
+    orbitals: OrbitControls = null;
 
     // Holds the lights for easy reference
     lights: Array<THREE.Light> = [];
@@ -46,6 +50,12 @@ export default class BasicScene extends THREE.Scene{
             alpha: true
         });
         this.renderer.setSize(this.width, this.height);
+
+        // add window resizing
+        BasicScene.addWindowResizing(this.camera, this.renderer);
+
+        // sets up the camera's orbital controls
+        this.orbitals = new OrbitControls(this.camera, this.renderer.domElement)
 
         // Adds an origin-centered grid for visual reference
         if (addGridHelper){
@@ -111,6 +121,23 @@ export default class BasicScene extends THREE.Scene{
             cameraGroup.add(this.camera, 'zoom', 0, 1)
             cameraGroup.open();
 
+        }
+    }
+
+    /**
+     * Given a ThreeJS camera and renderer, resizes the scene if the
+     * browser window is resized.
+     * @param camera - a ThreeJS PerspectiveCamera object.
+     * @param renderer - a subclass of a ThreeJS Renderer object.
+     */
+    static addWindowResizing(camera: THREE.PerspectiveCamera, renderer: THREE.Renderer){
+        window.addEventListener( 'resize', onWindowResize, false );
+        function onWindowResize(){
+
+            // uses the global window widths and height
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize( window.innerWidth, window.innerHeight );
         }
     }
 }

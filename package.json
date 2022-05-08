@@ -1,5 +1,5 @@
 {
-  "name": "threejs-base-project",
+  "name": "threejs-typescript-base-project",
   "version": "1.0.0",
   "description": "A basic ThreeJS project configured with TypeScript & Webpack.",
   "main": "dist/main.js",
@@ -7,7 +7,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/dat.gui": "^0.7.7",
-    "dat.gui": "^0.7.9",
+    "@types/three": "^0.140.0",
     "ts-loader": "^9.3.0",
     "ts-node": "^10.7.0",
     "webpack": "^5.72.0",
@@ -17,7 +17,8 @@
     "build": "webpack"
   },
   "dependencies": {
-    "@types/three": "^0.140.0",
-    "three": "^0.140.0"
+
+    "three": "^0.140.0",
+    "dat.gui": "^0.7.9"
   }
 }
