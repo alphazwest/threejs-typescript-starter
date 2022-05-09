@@ -8,6 +8,9 @@ module.exports = {
         filename: 'main.js'
     },
     resolve: {
+        alias: {
+            three: path.resolve('./node_modules/three')
+        },
         extensions: ['.ts', '.js']
     },
     module: {
